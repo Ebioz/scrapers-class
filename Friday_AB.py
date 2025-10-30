@@ -11,6 +11,7 @@ role0 = "Abstract author"
 email = ""
 session_description = ""
 
+
             # ---------- Create table title ----------
 table_title = [
     'Name (incl. titles)',

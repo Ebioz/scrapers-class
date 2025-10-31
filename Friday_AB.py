@@ -102,8 +102,6 @@ for poster in posters[1:]:
                         role = role1
                     elif re.search(r"O-\d{3}", poster_index):
                         role = role2
-                    else:
-                        role = role0
                 else:
                     role = role0
                 cleaned_names = clean_names(sa_author)
@@ -156,8 +154,6 @@ for poster in posters[1:]:
                     role = role1
                 elif re.search(r"O-\d{3}", poster_index):
                     role = role2
-                else:
-                    role = role0
             else:
                 role = role0
             cleaned_names = clean_names(m["name"])
@@ -176,3 +172,4 @@ for poster in posters[1:]:
             ])
 file.close()
 wb.save("Friday_AB.xlsx")
+print("File Saved!")

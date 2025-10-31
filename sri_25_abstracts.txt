@@ -5642,7 +5642,7 @@ Jack RT Darby,1 Stacey L Holman,1 Brahmdeep S Saini,2,3 Georgia K
 Williams,4 Steven Miller,5,6 Mike Seed,2,3 Janna L Morrison∗.1 1University
 of South Australia, Adelaide, Australia; 2The Hospital for Sick Children,
 Toronto, ON, Canada; 3University of Toronto Canada, Toronto, ON,
-Canada; 44South Australian Health and Medical Research Institute,
+Canada; 4South Australian Health and Medical Research Institute,
 Adelaide, Australia, Adelaide, Australia; 5University of British Columbia,
 Vancouver, BC, Canada; 6British Columbia Children’s Hospital Research
 Institute, Vancouver, BC, Canada.
@@ -9666,7 +9666,7 @@ were particularly affected. Future studies of how lower neonatal Hb and
 Hct may affect short and long-term outcomes of newborns of NH Black
 mothers are critically needed.
 T-056
-Risk Profiling of Pregnancies with Low-Lying Placenta Using U.S.
+Risk Profiling of Pregnancies with Low-Lying Placenta Using US
 National Data. May Abiad†,1 Giulia Bonanni†,1 Ali Javinani†,1 Nikan
 Zargarzadeh†,1 Kjersti Aagaard∗,1,2,3,4 Alireza Shamshirsaz∗.1 1Fetal Care
 & Surgery Center, Boston Children’s Hospital, Boston, MA, United States;

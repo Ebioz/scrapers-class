@@ -8,9 +8,10 @@ wb = Workbook()
 ws = wb.active
 abstractUrl = "https://manage.ercongressi.it/storage/ercongressi/article/pdf/254/14496-SIE_2025.pdf"
 role0 = "Abstract author"
+role1 = "Poster presenter"
+role2 = "Speaker"
 email = ""
 session_description = ""
-
 
             # ---------- Create table title ----------
 table_title = [
@@ -96,13 +97,21 @@ for poster in posters[1:]:
             
             authors = [a.strip() for a in re.split(r",", single_aff_authors) if a.strip()]
             for sa_author in authors:
-                
+                if "∗" in sa_author:
+                    if re.search(r"(T|F|S)-\d{3}", poster_index):
+                        role = role1
+                    elif re.search(r"O-\d{3}", poster_index):
+                        role = role2
+                    else:
+                        role = role0
+                else:
+                    role = role0
                 cleaned_names = clean_names(sa_author)
                 
                 ws.append([
                     cleaned_names,
                     single_affiliation,
-                    role0,
+                    role,
                     email,
                     poster_index,
                     session_description,
@@ -121,7 +130,7 @@ for poster in posters[1:]:
         affiliations_with_numbers = []
 
         for author in split_authors:
-            name = re.sub(r"[\d,†∗]", "", author).strip(" .")
+            name = re.sub(r"[\d,†]", "", author).strip(" .")
             indicies = re.findall(r"\d+", author)
             authors_with_numbers.append((name, indicies))
 
@@ -142,13 +151,21 @@ for poster in posters[1:]:
             matched.append({"name": author, "affiliation": " ___ ".join(affs)})
 
         for m in matched:
-            
+            if "∗" in m["name"]:
+                if re.search(r"(T|F|S)-\d{3}", poster_index):
+                    role = role1
+                elif re.search(r"O-\d{3}", poster_index):
+                    role = role2
+                else:
+                    role = role0
+            else:
+                role = role0
             cleaned_names = clean_names(m["name"])
             
             ws.append([
                 cleaned_names,
                 m["affiliation"],
-                role0,
+                role,
                 email,
                 poster_index,
                 session_description,
@@ -157,95 +174,5 @@ for poster in posters[1:]:
                 abstractUrl,
                 "",
             ])
-
+file.close()
 wb.save("Friday_AB.xlsx")
-
-        
-        # print(poster_index, affiliations_with_numbers)
-
-    #_____Split_authors_and_aff__________
-
-        
-        # raw_ma_authors_with_numbers = ma_authors_separated[0].strip()
-        # if len(split_ma_authors) < 2:
-        #     print(f"{poster_index}: multiple affiliation split failed")
-        
-        # for ma_author in ma_authors_separated:
-        #     auth_name = re.sub(r"[\d,†∗]", "", ma_author).strip(" .")
-        #     auth_number = re.findall(r"\d+", ma_author)
-        #     ma_authors_with_numbers.append((auth_name, auth_number))
-            
-        #     raw_ma_affiliations_with_numbers = ma_authors_separated[1].strip()
-        #     ma_affiliations_separated = re.split(r";\s*", raw_ma_affiliations_with_numbers.strip())
-            
-        # print(poster_index, ma_authors_with_numbers)
-            
-            
-
-
-
-                
-                
-                # raw_ma_authors_with_numbers = ma_authors_separated[0].strip()
-                # ma_affiliations_with_numbers = ma_authors_separated[1].strip()
-            
-            # ma_authors_raw = re.split(r"(?<=\d)\s(?=[A-Z])", ma_authors_with_numbers)
-            # ma_affs_raw = re.split()
-            # print(poster_index, ma_authors_with_numbers)
-            
-# __________________
-
-#         # Build dict of affiliations
-#         aff_dict = {}
-#         for aff in re.split(r';\s(?=\d)', multiple_aff_affiliations):
-#             match = re.match(r"(\d+)\s*(.*)", aff.strip())
-#         if match:
-#             num, institution = match.groups()
-#             aff_dict[num] = institution.strip()
-
-#         # Assign affiliations to authors
-#         for i, author in enumerate(authors):
-#             # Capture all numbers associated with the author
-#             numbers = re.findall(r'\d+', author)
-
-#             # Clean author name
-#             clean_name = re.sub(r'[\*\†,\.;]?\d+', '', author).strip()
-
-#             # Collect affiliations
-#             aff_list = [aff_dict[num] for num in numbers if num in aff_dict]
-#             aff_joined = " ___ ".join(aff_list) if aff_list else ""
-
-#             ws.append([
-#                 clean_name,
-#                 aff_joined,
-#                 role0,
-#                 email,
-#                 "",
-#                 poster_index,
-#                 title,
-#                 poster_text,
-#                 abstractUrl,
-#                 "",
-#             ])
-
-
-
-# _____________unfihisned______________________________________
-#     if re.findall(r"\d", authors_and_affil):
-        
-#         authors = re.split(r"(?<=\d)\s", split_authors[0])
-#         aff_text = split_authors[1] 
-#     else:
-#         split_authors = re.split(r"\.\s", authors_and_affil, maxsplit=1)
-#         authors = re.split(r",\s*", split_authors[0])
-#         aff_text = split_authors[1]
-#         print("\n", )
-
-# _____________unfinished_______________________
-
-
-# _______________
-
-            # # def parse_authors_and_affil(authors_and_affil, index=None):
-    # #         authors_with_numbers = []
-    # #         affiliations_with_numbers = []
